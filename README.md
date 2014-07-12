@@ -21,7 +21,7 @@ https://code.google.com/p/android/issues/detail?id=68755
 
 Walkthrough of all user stories:
 
-![Video Walkthrough](ToDo.gif)
+![Video Walkthrough](Todo.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
