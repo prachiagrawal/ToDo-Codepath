@@ -1,52 +1,94 @@
 package com.codepath.example.todo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 
-public class EditItemActivity extends Activity {
+import com.codepath.example.todo.SetDateFragment.OnDateSelectedListener;
+
+public class EditItemActivity extends Activity implements OnDateSelectedListener {
+	public final static String MODULE = "EditItemAcitivity";
+	
 	EditText etEditItem;
+	TextView tvSetDate;	
+	String mDate;
+	SimpleDateFormat sdf_input;
+	SimpleDateFormat sdf_show;
+	Calendar cal;
+	
+	public final static String INPUT_TEXT = "inputText";
+	public final static String INPUT_DATE = "inputDate";
+	public final static String INPUT_POSITION = "inputPosition";
+
+	public final static String EDITED_TEXT = "editedText";
+	public final static String EDITED_DATE = "editedDate";
+	public final static String EDITED_POSITION = "editedPosition";
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_item);
-		String itemText = getIntent().getStringExtra("text");
+
+		String itemText = getIntent().getStringExtra(INPUT_TEXT);
 		etEditItem = (EditText) findViewById(R.id.etEditItem);
 		etEditItem.setText(itemText);
 		etEditItem.setSelection(etEditItem.getText().length());
-	}
+		
+		mDate = getIntent().getStringExtra(INPUT_DATE);		
+		sdf_input = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", Locale.US);
+		sdf_show = new SimpleDateFormat("EEE, MMM dd, yyyy", Locale.US);
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.edit_item, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		
+		tvSetDate = (TextView) findViewById(R.id.tvSetDate);
+		try {
+			tvSetDate.setText("Complete by " + sdf_show.format(sdf_input.parse(mDate)));
+		} catch (ParseException e) {
+			Log.e(MODULE, "Exception during parsing the date", e);
 		}
-		return super.onOptionsItemSelected(item);
 	}
 	
 	public void saveTodoItem(View c) {
-		int position = getIntent().getIntExtra("position", 0);
+		int position = getIntent().getIntExtra(INPUT_POSITION, 0);
 		etEditItem = (EditText) findViewById(R.id.etEditItem);
 		Intent data = new Intent();
-		data.putExtra("editedText", etEditItem.getText().toString());
-		data.putExtra("position", position);
+		data.putExtra(EDITED_TEXT, etEditItem.getText().toString());
+		data.putExtra(EDITED_POSITION, position);
+		data.putExtra(EDITED_DATE, mDate);
 		setResult(RESULT_OK, data); // set result code and bundle data for response
 		finish(); // closes the activity, pass data to parent
+	}
+	
+	public void setDate(View v) {
+    	DialogFragment newFragment = new SetDateFragment();
+        newFragment.show(getFragmentManager(), "dialog");
+	}	
+	
+	public void onDateSelected(int year, int month, int day) {
+		Calendar cal = Calendar.getInstance();
+	    cal.set(Calendar.YEAR, year);
+	    cal.set(Calendar.MONTH, month);
+	    cal.set(Calendar.DAY_OF_MONTH, day);
+	    mDate = cal.getTime().toString();
+		try {
+			tvSetDate.setText("Complete by " + sdf_show.format(sdf_input.parse(mDate)));
+		} catch (ParseException e) {
+			Log.e(MODULE, "Exception during parsing the date", e);
+		}
+		CheckBox cbSetDate = (CheckBox) findViewById(R.id.cbSetDate);
+		if (cbSetDate.isChecked()) {
+			cbSetDate.setChecked(false);
+        }
 	}
 }

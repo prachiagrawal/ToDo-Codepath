@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">ToDo</string>
+    <string name="app_name">Simple ToDo</string>
     <string name="hello_world">Hello world!</string>
     <string name="hint_enterText">Enter new item</string>
     <string name="add_label">Add</string>
-    <string name="title_activity_edit_item">EditItemActivity</string>
+    <string name="title_activity_edit_item">Edit Item</string>
     <string name="action_settings">Settings</string>
     <string name="string_editItem">Edit Item below</string>
     <string name="save_label">Save</string>
-
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tag_dialog">dialog</string>
+    <string name="check_setDate">Set Date</string>
+    <string name="string_setDate">Set a completion date</string>
 </resources>

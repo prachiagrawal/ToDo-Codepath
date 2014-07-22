@@ -13,6 +13,11 @@ Completed user stories:
  * [x] Required: User can add a new item to the todo list
  * [x] Required: User can remove an item from the todo list
  * [x] Required: User can edit an item from the todo list
+ * [x] Optional: Do not allow adding an empty item
+ * [x] Optional: Add an UP button on the Edit screen
+ * [x] Optional: Use a Fragment to allow adding a completion date
+
+
 
 Notes:
 
@@ -21,7 +26,7 @@ https://code.google.com/p/android/issues/detail?id=68755
 
 Walkthrough of all user stories:
 
-![Video Walkthrough](ToDo.gif)
+![Video Walkthrough](Todo.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

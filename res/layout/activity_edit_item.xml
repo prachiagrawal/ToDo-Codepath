@@ -8,17 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.codepath.example.todo.EditItemActivity" >
 
-    <Button
-        android:id="@+id/btnEditItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/etEditItem"
-        android:layout_below="@+id/etEditItem"
-        android:layout_marginTop="26dp"
-        android:onClick="saveTodoItem"
-        android:hint="@string/save_label"
-        android:text="@string/save_label" />
-
     <TextView
         android:id="@+id/tvEditItem"
         android:layout_width="fill_parent"
@@ -40,8 +29,38 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="text" >
-
-        <requestFocus />
     </EditText>
+
+    <Button
+        android:id="@+id/btnEditItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/etEditItem"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="32dp"
+        android:layout_marginLeft="49dp"
+        android:hint="@string/save_label"
+        android:onClick="saveTodoItem"
+        android:text="@string/save_label" />
+
+    <CheckBox
+        android:id="@+id/cbSetDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnEditItem"
+        android:layout_alignLeft="@+id/tvSetDate"
+        android:onClick="setDate"
+        android:layout_marginBottom="93dp"
+        android:text="@string/check_setDate" />
+
+    <TextView
+        android:id="@+id/tvSetDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/cbSetDate"
+        android:layout_alignLeft="@+id/etEditItem"
+        android:layout_marginBottom="38dp"
+        android:text="@string/string_setDate"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>
