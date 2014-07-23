@@ -5,7 +5,7 @@ ToDo-Codepath
 
 This is a simple Android app to manage one's Todo list. 
 
-Time spent: In total, 3 hours. 
+Time spent: In total, 10+ hours. 
 
 Completed user stories:
 
@@ -16,6 +16,7 @@ Completed user stories:
  * [x] Optional: Do not allow adding an empty item
  * [x] Optional: Add an UP button on the Edit screen
  * [x] Optional: Use a Fragment to allow adding a completion date
+ * [x] Optional: Persist the todo app in SQLite instead of using a text file
 
 
 
